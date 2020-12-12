@@ -1,0 +1,227 @@
+<html>
+<head>
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="mainDiv">
+        <h1 class="header">mastermind</h1>
+
+        <canvas id="board" style="visibility:hidden" width="300px" height="600px"></canvas>
+
+        
+
+        <div style="position:relative; left:344px; bottom:506px">
+        <div class="menu" style="visibility:hidden" id="menu2">
+            <h2 class="title">MASTERMIND</h1>
+            <div>
+                <h2><span id="player" class="player2"></span></h2>
+                <h2  id="text1" style='padding:0px'>Select your color combination</h2>
+            </div>
+            
+            <div>
+                <img src='img/blue.png' onclick="selectColour(blue)"></img>
+                <img src='img/green.png' onclick="selectColour(green)"></img>
+                <img src='img/red.png' onclick="selectColour(red)"></img>
+                <img src='img/cyan.png' onclick="selectColour(cyan)"></img></div>
+            <div>
+                <img src='img/orange.png' onclick="selectColour(orange)"></img>
+                <img src='img/pink.png' onclick="selectColour(pink)"></img>
+                <img src='img/white.png' onclick="selectColour(white)"></img>
+                <img src='img/yellow.png' onclick="selectColour(yellow)"></img></div>
+            
+            <div><button type="button" class="menuButton" id="changeLineButton" onclick="changeLine()">Confirm color combination</button></div>
+        
+            <table class="table" id='table'>
+                <tr>
+                  <th style="background-color:grey;width:10%"></th>
+                  <th id="firstLine" style='color:blue;'>Player1</th>
+                  <th id="firstLine" style="color:red">Player2</th>
+                </tr>
+                <tr id="tableR1">
+                    <td id="tableCol1">R1</td>
+                    <td id="tableCol2">-</td>
+                    <td id="tableCol2">-</td>
+                </tr>
+                <tr id="tableR2">
+                    <td id="tableCol1">R2</td>
+                    <td id="tableCol2">-</td>
+                    <td id="tableCol2">-</td>
+                </tr>
+                <tr id="tableR3">
+                    <td id="tableCol1">R3</td>
+                    <td id="tableCol2">-</td>
+                    <td id="tableCol2">-</td>
+                </tr>
+                <tr id="tableR4">
+                    <td id="tableCol1">R4</td>
+                    <td id="tableCol2">-</td>
+                    <td id="tableCol2">-</td>
+                </tr>
+                <tr id="tableR5">
+                    <td id="tableCol1">R5</td>
+                    <td id="tableCol2">-</td>
+                    <td id="tableCol2">-</td>
+                </tr>
+                <tr id="tableTotal">
+                    <td id="tableCol1" style="font-size:10px">Total</td>
+                    <td id="total1">-</td>
+                    <td id="total2">-</td>
+                </tr>
+              </table>
+
+        </div>
+
+        <div class="menu" id="victoryMenu">
+            <h3 style="font-size: 16px">VICTORY</h3>
+            <h4>You scored <span style="font-weight: bold;" id="pts"></span> points</h4>
+            <a class="menuButton" onclick="fctContinue()" style="margin-top:150px">Continue</a>
+        </div>
+
+        <div class="menu" id="defeatMenu">
+            <h3>DEFEAT</h3>
+            <h4>You did not score any point </h4>
+            <a class="menuButton" onclick="fctContinue()" style="margin-top:150px">Continue</a>
+        </div>
+    </div>
+
+        <div class="endOfGameMenu" id="endOfGameMenu">
+            <h1>End of game</h1><br>
+            <h4>Congratulations to</h4>
+            <h4><span id="winningPlayer"></span></h4>
+            <div style="display:inline">
+                <span id="finalScore1" class="finalScore"></span>
+                -
+                <span id="finalScore2" class="finalScore"></span>
+            </div>
+
+            <a class="endOfGameMenuButton" href="1v1Game.html">Revenge</a>
+            <a class="endOfGameMenuButton" href="main.html">Main menu</a>
+        </div>
+        <div class="settingsMenu" id="settingsMenu">
+            <h2>1v1 Mastermind</h2>
+            <div>Player 1: <input type="text" name="Player1" id="name" value="Player 1" required minlength="2" maxlength="10"></div>
+            <br>
+            <div>Player 2: <input type="text" name="Player2" id="name" value="Player 2" required minlength="2" maxlength="10"></div>
+            <br>
+            <div>Number of rounds
+                <select name="nbrRounds">
+                    <option value="">-</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <br>
+            <div id="error" style="color:red;visibility: hidden;">Choose a number of rounds!</div><br>
+            <button type="button" class="menuButton" onclick="play()">Play</button>
+        </div> 
+    </div>    
+</div>
+</body>
+    
+<script src="1v1Game.js"></script>
+
+    <script>
+        
+        function play(){
+            player1 = document.getElementsByName("Player1")[0].value;
+            player2 = document.getElementsByName("Player2")[0].value;
+            table.rows[0].cells[1].textContent = player1;
+            table.rows[0].cells[2].textContent = player2;
+
+            document.getElementById("player").innerHTML = player2;
+
+
+            nbrRounds = document.getElementsByName("nbrRounds")[0].value;
+
+            if (nbrRounds == ""){document.getElementById("error").style.visibility="visible";}
+            else {
+            document.getElementById("error").style.visibility="hidden";
+            document.getElementById("settingsMenu").style.visibility="hidden";
+            document.getElementById("board").style.visibility="visible";
+            document.getElementById("menu2").style.visibility="visible";
+            ctx.drawImage(ground,0,0,300,600)
+            draw();
+
+            
+            //Display as many lines as there are rounds in the score table
+            for (i=nbrRounds;i<5;i++){
+                var j = nbrRounds;
+                j++;
+                document.getElementById("table").deleteRow(j)
+            }
+            }
+        
+
+
+        } 
+        
+
+        function selectColour(x) {
+        selectedColour = x;
+        if (selectedHole.column == 1){row[nbrOfRows].h1 = selectedColour;}
+        if (selectedHole.column == 2){row[nbrOfRows].h2 = selectedColour;}
+        if (selectedHole.column == 3){row[nbrOfRows].h3 = selectedColour;}
+        if (selectedHole.column == 4){row[nbrOfRows].h4 = selectedColour;}
+
+        selectedHoleRight();
+
+
+        draw();
+
+        count=0;
+        if (row[nbrOfRows].h1 != empty){count++}
+        if (row[nbrOfRows].h2 != empty){count++}
+        if (row[nbrOfRows].h3 != empty){count++}
+        if (row[nbrOfRows].h4 != empty){count++}
+        if (count==4){document.getElementById("changeLineButton").style.visibility="visible";}
+        else {document.getElementById("changeLineButton").style.visibility="hidden"}
+        }
+
+        function fctContinue() { 
+            document.getElementById("victoryMenu").style.visibility="hidden";
+            document.getElementById("defeatMenu").style.visibility="hidden";
+
+            if (round == nbrRounds && turn == 2){endGame();}
+            document.getElementById("text1").innerHTML = "Select your color combination";
+            ctx.drawImage(ground,0,0,300,600)
+            for (i=1;i<14;i++) {row[i] = {h1:empty,h2:empty,h3:empty,h4:empty,y:i*box*2-box,count:0}}
+            selectedHole.y = box*23;
+            selectedHole.x = box*3;
+            nbrOfRows = 12;
+            if (turn == 2){round++}
+            if (turn == 1){turn=2} else{turn=1}
+            draw();
+        }
+
+        function endGame(){
+            document.getElementById("board").style.visibility="hidden";
+            document.getElementById("menu2").style.visibility="hidden";
+            document.getElementById("endOfGameMenu").style.visibility="visible";
+            if(totalScore1 > totalScore2){
+                document.getElementById("winningPlayer").innerHTML = player1;
+                document.getElementById("winningPlayer").style.color="blue";
+            }
+            else if (totalScore1 < totalScore2){
+                document.getElementById("winningPlayer").innerHTML = player2;
+                document.getElementById("winningPlayer").style.color="red";
+            }
+
+            document.getElementById("finalScore1").innerHTML = totalScore1;
+            document.getElementById("finalScore2").innerHTML = totalScore2;
+
+
+
+        
+
+        }
+
+
+    </script>
+</html>

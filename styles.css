@@ -1,0 +1,331 @@
+/*ELEMENTS*/
+
+* {
+    font-family: 'Aldrich';
+}
+
+body {
+    background-color:grey;
+}
+
+h1 {
+    font-family: 'Bungee Inline';
+    font-size: 36px;
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Bungee Inline';
+    font-size: 20px;
+    text-align: center;
+    color:white;
+    padding: 10px;
+}
+
+h3 {
+    border: 3px solid black;
+    background-color: lightgrey;
+    border-radius: 10%;
+    font-family: 'Bungee Inline';
+    font-size: 40px;
+    text-align: center;
+    color:black;
+    padding: 10px;
+}
+
+h4 {
+    font-family: 'Bungee Inline';
+    font-size: 20px;
+    text-align: center;
+    color:white;
+    padding: 10px;
+}
+
+img {
+    display: inline;
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    cursor: hand;
+}
+
+canvas{
+    position: relative;
+    top: 100px; left: 18px;
+    border: 3px solid white;
+    border-radius: 5px;
+}
+
+
+
+/*CLASS*/
+
+.mainDiv{ /*This is the background box*/
+    width:640px;
+    height:720px;
+    margin:auto;
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color:black;
+}
+
+
+
+.helpButton{
+    position:absolute;
+    left:560px;
+    top:20px;
+    width:30px;
+    height:34px;
+    color:white;
+    font-size:30px;
+    border: 3px solid white;
+    border-radius: 100%;
+    padding-left:14px;
+    padding-top:12px;
+}
+
+.help{
+    position:relative;
+
+}
+
+
+
+.help:hover + .helpWindow{
+    display:block;
+    position:fixed;
+    left:10px;
+    top:10px;
+    height: 580px;
+    width: 250px;
+    margin:auto;
+
+    border: 3px solid white;
+    border-radius: 10px;
+    background-color:black;
+    color:white;    text-align: center;
+    float:letf;
+}
+
+
+
+.helpWindow{ /*This is the background box*/
+    
+    padding:10px;
+
+    display:none;
+}
+
+.header { /*Header for all the modes*/
+    width: 400px;
+    height: 55px;
+    position: absolute;
+    left: 50%;
+    margin-left: -200px;
+    margin-top:10px;
+    border: 3px solid white;
+    border-radius: 3%;
+    padding-top:10px;
+    color: white;
+}
+
+.mainMenu {
+    position: absolute;
+    top: 50%; left: 50%;
+    margin-top:-160px;
+    margin-left:-180px;
+    height: 320px;
+    width: 360px;
+    border: 3px solid white;
+    border-radius: 3%;
+    background-color: black;
+    padding: 10px 10px;
+    color:white;
+}
+
+.menu { /*This is the in-game side menu*/
+    position:absolute;
+    border: 3px solid white;
+    background-color: black;
+    padding: 10px 10px;
+    height: 580px;
+    width: 250px;
+    border-radius: 3%;
+    text-align: center;
+}
+
+.settingsMenu { /*In multiplayer modes, this is the game settings*/
+    border: 3px solid black;
+    border-radius: 5px;
+    background: grey;
+    height: 300px;
+    width: 300px; 
+    position: relative;
+    bottom:420px;
+    left: 50%;
+    margin-left:-150px;
+    padding: 10px 10px;
+    text-align: center;
+}
+
+.endOfGameMenu { /*Box that displays the winner when game is over*/
+    visibility: hidden;
+    border: 3px solid black;
+    margin: auto;
+    width: 50%;
+    height:70%;
+    background: grey;
+    padding: 10px 10px;
+    text-align: center;
+    margin-top: 5%;
+    position: fixed;
+    left:25%;
+    top:0px;
+}
+
+.endOfGameMenuButton{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    margin-top:50px;
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+    background-color: lightgray;
+    border-radius: 4px;
+    color: black;
+    border: 2px solid black;
+    text-decoration: none;
+    text-align: center;
+    cursor: hand;
+
+}
+
+.menuButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    /*margin-top:50px;*/
+
+    padding: 10px;
+    width: 200px;
+    font-size: 16px;
+    background-color: lightgray;
+    border-radius: 4px;
+    color: black;
+    border: 2px solid black;
+    text-decoration: none;
+    text-align: center;
+    cursor: hand;
+
+}
+
+.menuButton:hover, .endOfGameMenuButton:hover {
+    background-color: black;
+    border: 2px solid white;
+    color: white;
+
+}
+
+.player1 {
+    border: 3px solid blue;
+    color: blue;
+    background-color: rgba(170,190,250);
+    padding: 8px 30px;
+}
+
+.player2 {
+    border: 3px solid red;
+    color: red;
+    background-color: rgba(255,210,210);
+    padding: 8px 30px;
+}
+
+.table {
+    position: absolute;
+    top: 440px;
+    margin-left: auto;
+    margin-right: auto;
+    color:white;
+    text-align: center;
+    font-size:15px;
+}
+
+.title {
+    background-color:black;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.finalScore {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    padding: 5px;
+    font-size: 30px;
+}
+
+
+
+/*ID*/
+
+#changeLineButton {
+    visibility: hidden;
+    margin-top: 30px;
+}
+
+#defeatMenu {
+    visibility: hidden;
+}
+
+#victoryMenu {
+    visibility: hidden;
+}
+
+
+
+#tableR2, #tableR3, #tableR4, #tableR5 {
+    border: 1px solid black;
+}
+
+#tableCol1 {
+    color:white;
+    background-color: black;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+#tableCol2, #total1, #total2 {
+    color:black;
+    background-color: white;
+}
+
+#firstLine {
+    width:40%;
+    background-color: lightgrey;
+    padding: 5px 0px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+#winningPlayer {
+    font-size: 40px;
+
+}
+
+#mainMenuButton{
+    position:absolute;
+    bottom:0px;
+    left:50%;
+    margin-left:-111px;
+}
+
+
+
+#box {
+    cursor: hand;
+}
+

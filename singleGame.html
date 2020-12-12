@@ -1,0 +1,132 @@
+<html>
+<head>
+    <title>Mastermind</title>
+    <link rel="stylesheet" href="styles.css">        
+    <link href='https://fonts.googleapis.com/css?family=Bungee Inline' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Aldrich' rel='stylesheet'>
+</head>
+
+<body onload="init()">
+    <div class="mainDiv">
+        <h1 class="header">mastermind</h1>
+
+        <div class="help"><div class="helpButton"> ? </div>
+        </div>
+
+        <div class="helpWindow">
+            <h1>How to play</h1>
+            <p>Your goal is to discover the secret combination of 4 colors. In order to do so, pick 4 colors and make your first guess</p>
+            <p>Once you have submitted your guess, you will see on the right side of the board 4 new rounds, giving you essential clues for your next guess.</p>
+            <p>Each white mark indicates one color is correct but is wrongly placed.</p>
+            <p>Each red mark indicates one color is correctly placed</p>
+            <p>Each empty mark (black) indicated one color is not present in the secret combination</p>
+            <p>Your goal is therefore to get 4 red marks</p>
+        </div>
+
+        
+
+        <canvas id="board" width="300px" height="600px"></canvas>
+        
+        <div style="position:relative; left:344px; bottom:506px">
+            <div class="menu" id="menu2">
+                <h2>Pick a color</h2>
+                <div>
+                    <img src='img/blue.png' onclick="selectColour(blue)"></img>
+                    <img src='img/green.png' onclick="selectColour(green)"></img>
+                    <img src='img/red.png' onclick="selectColour(red)"></img>
+                    <img src='img/cyan.png' onclick="selectColour(cyan)"></img></div>
+                <div>
+                    <img src='img/orange.png' onclick="selectColour(orange)"></img>
+                    <img src='img/pink.png' onclick="selectColour(pink)"></img>
+                    <img src='img/white.png' onclick="selectColour(white)"></img>
+                    <img src='img/yellow.png' onclick="selectColour(yellow)"></img></div>
+
+                <button type="button" class="menuButton" id="changeLineButton" onclick="changeLine()">Make a guess</button>
+            </div>
+
+            <div class="menu" id="victoryMenu">
+                <br><br><br><br><br><br><br><br><br><br>
+                <h3 style="font-size: 30px">VICTORY</h3>
+                <h4>You scored <span style="font-weight: bold;" id="pts"></span> points</h4>
+                <a class="menuButton" id="mainMenuButton" href="main.html">Main menu </a>
+            </div>
+            
+            <div class="menu" id="defeatMenu">
+                <br><br><br><br><br><br><br><br><br><br>
+                <h3>DEFEAT</h3>
+                <h4>You did not score any point</h4>
+
+                <a class="menuButton" id="mainMenuButton"  href="main.html">Main menu </a>
+
+            </div>
+        </div>
+
+        
+
+    </div>
+    
+    
+
+
+ 
+
+
+    
+</body>
+
+<script src="soloGame.js"></script>
+<script>
+
+    function init() {
+        ctx.drawImage(ground,0,0,300,600)
+        document.getElementById("menu2").style="visibility:visible";
+        firstRowSetting();
+        draw();
+     
+    }
+
+    function selectColour(x) {
+        selectedColour = x;
+        if (selectedHole.column == 1){row[nbrOfRows].h1 = selectedColour;}
+        if (selectedHole.column == 2){row[nbrOfRows].h2 = selectedColour;}
+        if (selectedHole.column == 3){row[nbrOfRows].h3 = selectedColour;}
+        if (selectedHole.column == 4){row[nbrOfRows].h4 = selectedColour;}
+
+        selectedHoleRight();
+
+        draw();
+
+        count=0;
+        if (row[nbrOfRows].h1 != empty){count++}
+        if (row[nbrOfRows].h2 != empty){count++}
+        if (row[nbrOfRows].h3 != empty){count++}
+        if (row[nbrOfRows].h4 != empty){count++}
+        if (count==4){
+            document.getElementById("changeLineButton").style.visibility="visible";
+            changeLineBtnDisplay = true;}
+        else {document.getElementById("changeLineButton").style.visibility="hidden"}
+
+
+
+    }
+
+    function changeLine(){
+        changeLineBtnDisplay = false;
+        comparison();
+
+        if (nbrOfRows != 11){
+        selectedHole.y += box*2;
+        selectedHole.x = box;
+        selectedHole.right = false;
+        selectedHole.left = true;
+        selectedHole.column = 1;
+        nbrOfRows++;
+        count = 0;
+        document.getElementById("changeLineButton").style.visibility="hidden"}
+
+
+        draw();
+    }
+    
+</script>
+</html>  
